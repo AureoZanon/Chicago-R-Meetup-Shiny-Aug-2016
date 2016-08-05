@@ -1,0 +1,89 @@
+---
+title: "Stock Flexdashboard Shiny Example"
+date: "Aug 3 2016"
+output:
+  flexdashboard::flex_dashboard:
+  vertical_layout: scroll
+source_code: embed
+theme: spacelab
+runtime: shiny
+
+---
+  
+```{r setup, include = FALSE}
+library(quantmod)
+library(dygraphs)
+library(flexdashboard)
+library(formattable)
+```
+
+
+# Trading History {data-orientation=rows}
+
+
+Sidebar {.sidebar}
+-------------------------------------
+  
+```{r}
+
+helpText("Select a stock.")
+
+textInput("stock1", "Choose a stock", "AMZN")
+
+stock1 <- reactive({
+  req(input$stock1)
+  stock1 <- getSymbols(as.character(input$stock1), auto.assign = FALSE)
+  return(stock1)
+})
+
+makePlot <- function(){
+  dygraph(Cl(stock1() )) %>%
+  dyRangeSelector(height = 40)
+}
+
+```
+
+Row {data-height=200}
+-----------------------------------------------------------------------
+### Highest Close {.value-box data-icon="fa-arrow-circle-o-up"}
+```{r, echo=FALSE}
+
+valueBoxOutput("valueBox1")
+
+output$valueBox1 <- renderValueBox({
+  valueBox(currency(max(Cl(stock1())), format = "d"))
+})
+```
+
+### Lowest Close {.value-box data-icon="fa-arrow-circle-o-down"}
+
+```{r}
+
+valueBoxOutput("valueBox2")
+
+output$valueBox2 <-renderValueBox({
+  valueBox(currency(min(Cl(stock1())), format = "d"))
+})
+```
+
+Row {data-height=400, .tabset}
+-----------------------------------------------------------------------
+### Closing Price
+```{r, echo = FALSE}
+dygraphOutput("dygraph1")
+
+output$dygraph1 <- renderDygraph({
+  makePlot()
+})
+```
+
+### Volume
+```{r, echo = FALSE}
+dygraphOutput("dygraph2")
+
+output$dygraph2 <- renderDygraph({
+  dygraph(Vo(stock1()))
+})
+```
+
+Row
