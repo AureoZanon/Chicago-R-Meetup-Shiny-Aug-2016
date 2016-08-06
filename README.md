@@ -27,6 +27,7 @@ See Leaflet_Chicago_Starbucks_Locations.R
 
 http://rmarkdown.rstudio.com/
 http://rmarkdown.rstudio.com/developer_parameterized_reports.html
+
 See Stocks.Rmd
 
 Example params argument of the rmarkdown::render function:
