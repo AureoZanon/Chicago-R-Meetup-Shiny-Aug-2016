@@ -15,6 +15,8 @@ R 3.2.5 used for examples.
 
 Links/examples reviewed in the following order:
 
+## 1. htmlwidgets for R
+
 http://www.htmlwidgets.org/
 
 ```r
@@ -25,7 +27,10 @@ dygraph(nhtemp, main = "New Haven Temperatures") %>%
 
 See Leaflet_Chicago_Starbucks_Locations.R
 
+## 2. R Markdown
+
 http://rmarkdown.rstudio.com/
+
 http://rmarkdown.rstudio.com/developer_parameterized_reports.html
 
 See Stocks.Rmd
@@ -37,15 +42,26 @@ rmarkdown::render("Stocks.Rmd", params = list(symbol='TSLA'))
 ```
 See Stocks_New_Features.Rmd
 
+## 3. Shiny
+
 http://shiny.rstudio.com/gallery/
+
 http://shiny.rstudio.com/gallery/movie-explorer.html
+
 https://gallery.shinyapps.io/shiny-salesman/
+
 https://github.com/toddwschneider/shiny-salesman
 
+## 3.A Shiny HTML Templates
+
 http://shiny.rstudio.com/articles/templates.html
+
 See Finance_Shiny_HTML_Template
 
+## 3.B Shiny Gadgets
+
 http://shiny.rstudio.com/articles/gadgets.html
+
 https://github.com/calligross/ggthemeassist
 
 Code example used with ggthemeassist:
@@ -65,9 +81,14 @@ p <- qplot(carat, price, data = diamonds, color = clarity) + labs(x = "Carat", y
 p
 ```
 
+## 4. R Markdown & Shiny for Interactive & Reproducible Analysis 
+
 http://shiny.rstudio.com/gallery/download-knitr-reports.html
 
 http://rmarkdown.rstudio.com/flexdashboard/examples.html
+
 https://beta.rstudioconnect.com/jjallaire/htmlwidgets-dygraphs/
+
+https://jjallaire.shinyapps.io/shiny-kmeans/
 
 See Stocks_Flexdashboard_Shiny.Rmd
